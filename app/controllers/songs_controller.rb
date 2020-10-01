@@ -1,8 +1,10 @@
 class SongsController < ApplicationController
   def index
+    @songs = Song.all
   end
 
   def show
+    @song = Song.find(params[:id])
   end
 
   def new
@@ -51,5 +53,9 @@ class SongsController < ApplicationController
 
   def artist_params
     params.require(:artist).permit(:name)
+  end
+
+  def to_s
+    self.artist.name + " - " + self.title
   end
 end
